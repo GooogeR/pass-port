@@ -1,4 +1,5 @@
 <template>
+  test
   <div>
     <h1>Firestore Example</h1>
     <input v-model="newName" placeholder="Name" />
