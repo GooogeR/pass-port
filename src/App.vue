@@ -29,11 +29,11 @@
             <p class="card-link-text">Яндекс Карты</p>
           </a>
           <a href="#" class="card-link">
-            <img src="#" alt="" class="card-link-img">
+            <img src="../src/assets/app-icon.png" alt="" class="card-link-img">
             <p class="card-link-text">2Gis</p>
           </a>
           <a href="#" class="card-link">
-            <img src="#" alt="" class="card-link-img">
+            <img src="../src/assets/app-icon.png" alt="" class="card-link-img">
             <p class="card-link-text">Google Карты</p>
           </a>
         </div>
@@ -43,7 +43,7 @@
         <p class="card-semi-title">Обрадовать коллектив</p>
         <div class="card-links-container">
           <a href="#" class="card-link">
-            <img src="#" alt="" class="card-link-img">
+            <img src="../src/assets/app-icon.png" alt="" class="card-link-img">
             <p class="card-link-text">нетмонет</p>
           </a>
         </div>
@@ -53,11 +53,11 @@
         <p class="card-semi-title">Напишите нам</p>
         <div class="card-links-container">
           <a href="#" class="card-link">
-            <img src="#" alt="" class="card-link-img">
+            <img src="../src/assets/app-icon.png" alt="" class="card-link-img">
             <p class="card-link-text">WhatsApp</p>
           </a>
           <a href="#" class="card-link">
-            <img src="#" alt="" class="card-link-img">
+            <img src="../src/assets/app-icon.png" alt="" class="card-link-img">
             <p class="card-link-text">Telegram</p>
           </a>
         </div>
@@ -140,13 +140,19 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style>
 @import url('https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=IBM+Plex+Sans:wght@500&display=swap');
 
 body {
   margin: 0;
   font-family: "Dela Gothic One", sans-serif;
 
+}
+
+section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .container {
@@ -161,13 +167,13 @@ body {
   position: relative;
   background-color: #DEDEDE;
 
-  .container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    min-width: 100%;
-    gap: 16px;
-  }
+}
+
+.main-section .container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
 }
 
 .top-bridge {
@@ -257,12 +263,29 @@ body {
   display: flex;
   flex-direction: column;
   gap: 8px;
+  margin-top: 20px;
 }
 
 .card-link {
   border: 1px solid #000;
   border-radius: 15px;
   display: flex;
+  position: relative;
+  height: 54px;
+  text-decoration: none;
+}
+
+.card-link-text {
+  font-family: "IBM Plex Sans", sans-serif;
+  margin: 0;
+  font-size: 14px;
+  text-decoration: none;
+  line-height: 14px;
+  color: #000;
+  position: absolute;
+  top: 50%;
+  left: 60px;
+  transform: translateY(-50%);
 }
 
 .card-title {
@@ -274,16 +297,42 @@ body {
   width: 30px;
   height: 30px;
   object-fit: contain;
+  position: absolute;
+  top: 50%;
+  left: 20px;
+  transform: translateY(-50%);
 }
 
 .card-semi-title {
   font-size: 15px;
   margin: 8px 0 0 0;
+  font-family: "IBM Plex Sans", sans-serif;
+  line-height: 100%;
+
 }
 
 .end-section {
   background-color: #3D6C59;
   height: 900px;
+  position: relative;
+
+}
+
+.copyrights {
+  color: #E5A2BC;
+  font-size: 10px;
+  position: absolute;
+  left: 50%;
+  top: 20px;
+  transform: translate(-50%);
+}
+
+.slogan {
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%);
+  bottom: 20px;
+  color: #fff;
 
 }
 </style>
