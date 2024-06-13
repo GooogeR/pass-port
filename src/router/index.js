@@ -5,15 +5,22 @@ import store from '../store';
 
 const routes = [
   {
+    path: '/',
+    redirect: '/login'
+  },
+  {
+    path: '/main',
+    component: AppPage,
+    meta: { requiresAuth: true }
+  },
+  {
     path: '/login',
     name: 'Login',
     component: LoginPage
   },
   {
-    path: '/',
-    name: 'App',
-    component: AppPage,
-    meta: { requiresAuth: true }
+    path: '/:pathMatch(.*)*',
+    redirect: '/login'
   }
 ];
 
@@ -22,7 +29,6 @@ const router = createRouter({
   routes
 });
 
-// Навигационный охранник
 router.beforeEach((to, from, next) => {
   if (to.matched.some(record => record.meta.requiresAuth)) {
     if (!store.state.isAuthenticated) {

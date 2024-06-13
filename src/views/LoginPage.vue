@@ -9,22 +9,13 @@
       <button type="submit">Войти</button>
     </form>
     <p v-if="error">{{ error }}</p>
-    <hr>
-    <h2>Регистрация</h2>
-    <form @submit.prevent="register">
-      <label for="registerEmail">Электронная почта:</label>
-      <input type="email" id="registerEmail" v-model="registerEmail" required>
-      <label for="registerPassword">Пароль:</label>
-      <input type="password" id="registerPassword" v-model="registerPassword" required>
-      <button type="submit">Зарегистрироваться</button>
-    </form>
-    <p v-if="registerError">{{ registerError }}</p>
   </div>
 </template>
 
 <script>
-import { useStore } from 'vuex';
+import { auth } from '@/firebase/firebaseConfig'; // Путь к конфигурации Firebase
 import { useRouter } from 'vue-router';
+import { signInWithEmailAndPassword } from 'firebase/auth';
 
 export default {
   name: 'LoginPage',
@@ -32,32 +23,26 @@ export default {
     return {
       email: '',
       password: '',
-      registerEmail: '',
-      registerPassword: '',
-      error: null,
-      registerError: null
-    };
-  },
-  setup() {
-    const store = useStore();
-    const router = useRouter();
-    return {
-      store,
-      router
+      error: null
     };
   },
   methods: {
     async login() {
-      try {
-        await this.store.dispatch('login');
-        this.router.push('/'); // Переход на страницу приложения после входа
-      } catch (err) {
-        console.error('Login error:', err.message);
-        this.error = err.message;
-      }
-    },
-    async register() {
+  try {
+    const router = useRouter();
+
+    await signInWithEmailAndPassword(auth, this.email, this.password);
+
+    if (router) {
+      router.push('/main');
+    } else {
+      console.error('Router is not initialized.');
     }
+  } catch (err) {
+    console.error('Login error:', err.message);
+    this.error = err.message;
+  }
+}
   }
 };
 </script>
