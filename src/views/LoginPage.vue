@@ -13,36 +13,45 @@
 </template>
 
 <script>
-import { auth } from '@/firebase/firebaseConfig'; // Путь к конфигурации Firebase
-import { useRouter } from 'vue-router';
+import { auth } from '@/firebase/firebaseConfig'; 
 import { signInWithEmailAndPassword } from 'firebase/auth';
+import { useRouter } from 'vue-router';
+import { ref } from 'vue';
+import { useStore } from 'vuex'; 
 
 export default {
   name: 'LoginPage',
-  data() {
-    return {
-      email: '',
-      password: '',
-      error: null
-    };
-  },
-  methods: {
-    async login() {
-  try {
+  setup() {
+    const email = ref('');
+    const password = ref('');
+    const error = ref(null);
     const router = useRouter();
+    const store = useStore(); 
 
-    await signInWithEmailAndPassword(auth, this.email, this.password);
+    const login = async () => {
+      console.log('Login function called');  
+      console.log('Email:', email.value);  
+      console.log('Password:', password.value);  
 
-    if (router) {
-      router.push('/main');
-    } else {
-      console.error('Router is not initialized.');
-    }
-  } catch (err) {
-    console.error('Login error:', err.message);
-    this.error = err.message;
-  }
-}
+      try {
+        const userCredential = await signInWithEmailAndPassword(auth, email.value, password.value);
+        console.log('User signed in:', userCredential.user);
+
+        store.commit('setAuthenticated', true);
+
+        router.push('/app');
+      } catch (err) {
+        console.error('Login error:', err.message);
+        error.value = err.message;
+      }
+    };
+
+    return {
+      email,
+      password,
+      error,
+      login
+    };
   }
 };
 </script>

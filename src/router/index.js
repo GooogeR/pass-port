@@ -9,7 +9,7 @@ const routes = [
     redirect: '/login'
   },
   {
-    path: '/main',
+    path: '/app',
     component: AppPage,
     meta: { requiresAuth: true }
   },
@@ -18,10 +18,6 @@ const routes = [
     name: 'Login',
     component: LoginPage
   },
-  {
-    path: '/:pathMatch(.*)*',
-    redirect: '/login'
-  }
 ];
 
 const router = createRouter({

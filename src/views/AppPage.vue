@@ -1,8 +1,5 @@
 <template>
   <div id="app">
-    <button @click="goToLogin" class="login-button" v-if="!isLoginPage">
-      <img src="@/assets/login.png" alt="Login">
-    </button>
     <router-view v-if="!isLoginPage" />
     <LoginPage v-if="isLoginPage" />
     <section class="intro-section">
