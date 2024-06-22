@@ -11,14 +11,8 @@ module.exports = defineConfig({
 });
 
 module.exports = {
-  publicPath: process.env.NODE_ENV === 'production' ? '/pass-port/' : '/',
-  outputDir: 'dist',
-  assetsDir: '',
-  devServer: {
-    historyApiFallback: true
-  },
-  configureWebpack: {
-    devtool: 'source-map'
-  }
-};
+  publicPath: process.env.NODE_ENV === 'production'
+    ? '/pass-port/'  
+    : '/'
+}
 
